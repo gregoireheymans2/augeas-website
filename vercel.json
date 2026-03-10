@@ -1,5 +1,9 @@
 {
   "routes": [
-    { "src": "/download-app", "dest": "/download-app.html" }
+    { "src": "/download-app", "dest": "/download-app.html" },
+
+    { "src": "/augeas-privacy/delete-account", "dest": "/augeas-privacy/delete-account.html" },
+
+    { "src": "/augeas-privacy/Regle-confidentialite", "dest": "/augeas-privacy/Regle-confidentialite.html" }
   ]
 }
