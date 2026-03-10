@@ -3,3 +3,15 @@
     { "src": "/download-app", "dest": "/download-app.html" }
   ]
 }
+
+{
+  "routes": [
+    { "src": "/delete-account", "dest": "/delete-account.html" }
+  ]
+}
+
+{
+  "routes": [
+    { "src": "/Regle-confidentialite", "dest": "/Regle-confidentialite.html" }
+  ]
+}
