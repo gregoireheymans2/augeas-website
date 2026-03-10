@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Suppression de compte / Account Deletion — Augeas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #111111;
+      --dark:     #1a1a1a;
+      --mid:      #555555;
+      --soft:     #999999;
+      --border:   #e4e4e4;
+      --bg:       #f7f7f5;
+      --white:    #ffffff;
+      --yellow:   #f5c400;
+      --blue:     #4a90d9;
+      --green:    #3daa6e;
+      --red:      #d94a4a;
+      --red-pale: #fdf2f2;
+      --radius:   10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+
+    .dots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px;
+      width: 28px;
+    }
+    .dot-y {
+      width: 12px; height: 12px; border-radius: 50%; background: var(--yellow);
+      grid-column: 1 / 3; justify-self: center;
+    }
+    .dot-b { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); }
+    .dot-g { width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+
+    .nav-brand { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+    .nav-brand-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 22px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--black);
+    }
+    .nav-brand-sub {
+      font-size: 8px; letter-spacing: 0.14em; color: var(--soft);
+      text-transform: uppercase; font-weight: 400; margin-top: 3px;
+    }
+
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+    }
+
+    .lang-toggle {
+      display: flex; border: 1.5px solid var(--border);
+      border-radius: 4px; overflow: hidden;
+    }
+    .lang-btn {
+      background: transparent; border: none; padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mid); cursor: pointer; transition: all 0.15s;
+    }
+    .lang-btn + .lang-btn { border-left: 1.5px solid var(--border); }
+    .lang-btn.active { background: var(--black); color: var(--white); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 48px 56px;
+    }
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--soft);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::after {
+      content: ''; width: 36px; height: 1px; background: var(--border); display: block;
+    }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 58px);
+      text-transform: uppercase; line-height: 1.0;
+      letter-spacing: 0.02em; color: var(--black);
+    }
+    .hero-sub {
+      margin-top: 18px; font-size: 16px; color: var(--mid);
+      font-weight: 300; max-width: 580px; line-height: 1.65;
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1;
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ─── SECTION TITLE ─── */
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--soft);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: 24px 28px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .card-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 18px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--black);
+    }
+
+    .card-body { padding: 24px 28px; }
+
+    /* steps */
+    .steps { display: flex; flex-direction: column; gap: 0; }
+    .step {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 14px 0; border-bottom: 1px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; padding-bottom: 0; }
+    .step:first-child { padding-top: 0; }
+
+    .step-num {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: var(--black); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 13px; letter-spacing: 0.05em;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .step-text { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.55; padding-top: 4px; }
+    .step-text strong { color: var(--black); font-weight: 500; }
+
+    /* warning / info banners */
+    .banner {
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-size: 14px; line-height: 1.6; font-weight: 300;
+      margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px;
+    }
+    .banner-icon { flex-shrink: 0; margin-top: 1px; }
+    .banner-red  { background: var(--red-pale); border-left: 3px solid var(--red); color: #a33; }
+    .banner-green { background: #f0faf5; border-left: 3px solid var(--green); color: #1e6644; }
+    .banner strong { font-weight: 600; }
+
+    /* data list */
+    .data-list { list-style: none; }
+    .data-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.5;
+    }
+    .data-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .data-list li:first-child { padding-top: 0; }
+
+    .ldot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 7px;
+    }
+
+    /* ─── TWO CARDS SIDE BY SIDE ─── */
+    .two-cards {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+
+    /* ─── CONTACT ─── */
+    .contact-card {
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .contact-card-left h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 22px;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--white);
+      margin-bottom: 6px;
+    }
+    .contact-card-left p { font-size: 14px; color: #888; font-weight: 300; }
+    .contact-btn {
+      display: inline-block; background: var(--white); color: var(--black);
+      text-decoration: none; padding: 12px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 4px; white-space: nowrap; transition: background 0.15s, color 0.15s;
+    }
+    .contact-btn:hover { background: var(--green); color: var(--white); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); color: #555;
+      text-align: center; padding: 16px 48px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    footer a { color: #888; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ─── LANG ─── */
+    .block-lang { display: none; }
+    .block-lang.visible { display: block; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-link { display: none; }
+      .hero { padding: 44px 20px 40px; }
+      main { padding: 32px 16px 56px; }
+      .two-cards { grid-template-columns: 1fr; }
+      .contact-card { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://augeas.io" class="nav-logo">
+    <div class="dots">
+      <span class="dot-y"></span>
+      <span class="dot-b"></span>
+      <span class="dot-g"></span>
+    </div>
+    <!-- pyramid: yellow top (spans 2 cols), blue + green bottom -->
+    <div class="nav-brand">
+      <span class="nav-brand-name">Augeas</span>
+      <span class="nav-brand-sub">Turns waste into value</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://augeas.io#solution" class="nav-link">Our Solution</a>
+    <a href="https://augeas.io#contact" class="nav-link">Contact</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr">FR</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════ FRENCH ══════════ -->
+<div class="block-lang visible" data-lang="fr">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Gestion du compte</div>
+    <h1>Demande de suppression<br>de compte</h1>
+    <p class="hero-sub">Conformément aux directives du Google Play Store et à notre engagement envers la protection de vos données, vous pouvez demander la suppression de votre compte directement depuis l'application Augeas.</p>
+  </div>
+
+  <main>
+
+    <div>
+      <div class="section-title">Procédure à suivre</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="steps">
+            <div class="step">
+              <span class="step-num">01</span>
+              <p class="step-text">Ouvrez l'application <strong>Augeas</strong> sur votre appareil.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">02</span>
+              <p class="step-text">Assurez-vous d'être <strong>connecté à votre compte</strong>.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">03</span>
+              <p class="step-text">Accédez à votre page de <strong>Profil</strong> (ou « Mes informations »).</p>
+            </div>
+            <div class="step">
+              <span class="step-num">04</span>
+              <p class="step-text">Appuyez sur l'option <strong>« Supprimer mon compte »</strong>.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">05</span>
+              <p class="step-text">Lisez attentivement les informations dans la <strong>boîte de dialogue</strong> de confirmation.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">06</span>
+              <p class="step-text">Confirmez votre choix pour <strong>lancer la suppression</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-cards">
+
+      <div>
+        <div class="section-title">Données supprimées</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="banner banner-red">
+              <span class="banner-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#d94a4a"><path d="M12 2L1 21h22L12 2zm0 3.8L20.2 19H3.8L12 5.8zM11 10h2v5h-2zm0 6h2v2h-2z"/></svg>
+              </span>
+              <span>Action <strong>définitive et irréversible</strong>. Ces données seront effacées&nbsp;:</span>
+            </div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--red)"></span>Compte d'authentification (Firebase)</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Nom et adresse e-mail</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Historique de sessions de recyclage</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Token de notification (FCM Token)</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Signalements de problèmes soumis</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Données conservées</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="banner banner-green">
+              <span class="banner-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3daa6e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              </span>
+              <span><strong>Aucune donnée personnelle identifiable</strong> n'est conservée après suppression.</span>
+            </div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--green)"></span>Données statistiques anonymisées uniquement (ex. : poids total recyclé par poubelle) à des fins d'analyse globale — jamais associées à vous.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-left">
+        <h2>Besoin d'aide ?</h2>
+        <p>Si vous rencontrez des difficultés, notre équipe est disponible.</p>
+      </div>
+      <a href="mailto:info@augeas.io" class="contact-btn">Contacter info@augeas.io</a>
+    </div>
+
+  </main>
+</div><!-- /fr -->
+
+
+<!-- ══════════ ENGLISH ══════════ -->
+<div class="block-lang" data-lang="en">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Account management</div>
+    <h1>Account deletion<br>request</h1>
+    <p class="hero-sub">In accordance with Google Play Store guidelines and our commitment to protecting your data, you can request the deletion of your account directly from the Augeas application.</p>
+  </div>
+
+  <main>
+
+    <div>
+      <div class="section-title">How to proceed</div>
+      <div class="card">
+        <div class="card-body">
+          <div class="steps">
+            <div class="step">
+              <span class="step-num">01</span>
+              <p class="step-text">Open the <strong>Augeas</strong> application on your device.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">02</span>
+              <p class="step-text">Make sure you are <strong>signed in to your account</strong>.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">03</span>
+              <p class="step-text">Go to your <strong>Profile</strong> page (or "My information").</p>
+            </div>
+            <div class="step">
+              <span class="step-num">04</span>
+              <p class="step-text">Tap the <strong>"Delete my account"</strong> option.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">05</span>
+              <p class="step-text">Read the information in the <strong>confirmation dialog</strong> carefully.</p>
+            </div>
+            <div class="step">
+              <span class="step-num">06</span>
+              <p class="step-text">Confirm your choice to <strong>proceed with deletion</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="two-cards">
+
+      <div>
+        <div class="section-title">Data deleted</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="banner banner-red">
+              <span class="banner-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#d94a4a"><path d="M12 2L1 21h22L12 2zm0 3.8L20.2 19H3.8L12 5.8zM11 10h2v5h-2zm0 6h2v2h-2z"/></svg>
+              </span>
+              <span><strong>Permanent and irreversible action.</strong> The following data will be removed:</span>
+            </div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--red)"></span>Authentication account (Firebase)</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Name and email address</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Recycling session history</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Notification token (FCM Token)</li>
+              <li><span class="ldot" style="background:var(--red)"></span>Issue reports submitted</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-title">Data retained</div>
+        <div class="card">
+          <div class="card-body">
+            <div class="banner banner-green">
+              <span class="banner-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="#3daa6e"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+              </span>
+              <span><strong>No personally identifiable data</strong> is retained after deletion.</span>
+            </div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--green)"></span>Anonymised statistical data only (e.g. total weight recycled by a bin), for global analysis purposes — never linked back to you.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="contact-card">
+      <div class="contact-card-left">
+        <h2>Need help?</h2>
+        <p>If you experience any difficulties, our team is here to help.</p>
+      </div>
+      <a href="mailto:info@augeas.io" class="contact-btn">Contact info@augeas.io</a>
+    </div>
+
+  </main>
+</div><!-- /en -->
+
+
+<!-- FOOTER -->
+<footer>
+  <span class="block-lang visible" data-lang="fr" style="display:inline">
+    © 2025 Augeas — Tous droits réservés &nbsp;·&nbsp; <a href="https://augeas.io">augeas.io</a>
+  </span>
+  <span class="block-lang" data-lang="en">
+    © 2025 Augeas — All rights reserved &nbsp;·&nbsp; <a href="https://augeas.io">augeas.io</a>
+  </span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.block-lang').forEach(el => {
+      el.classList.toggle('visible', el.dataset.lang === lang);
+    });
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+</script>
+</body>
+</html>
