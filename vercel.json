@@ -1,7 +1,5 @@
 {
   "routes": [
-    { "src": "/download-app", "dest": "/download-app.html" },
-    { "src": "/delete-account", "dest": "/delete-account.html" },
-    { "src": "/Regle-confidentialite", "dest": "/Regle-confidentialite.html" }
+    { "src": "/download-app", "dest": "/download-app.html" }
   ]
 }
