@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Règles de Confidentialité / Privacy Policy — Augeas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black:    #111111;
+      --dark:     #1a1a1a;
+      --mid:      #555555;
+      --soft:     #999999;
+      --border:   #e4e4e4;
+      --bg:       #f7f7f5;
+      --white:    #ffffff;
+      --yellow:   #f5c400;
+      --blue:     #4a90d9;
+      --green:    #3daa6e;
+      --red:      #d94a4a;
+      --red-pale: #fdf2f2;
+      --radius:   10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--bg);
+      color: var(--black);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 48px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .dots {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 3px; width: 28px;
+    }
+    .dot-y { width: 12px; height: 12px; border-radius: 50%; background: var(--yellow); grid-column: 1 / 3; justify-self: center; }
+    .dot-b { width: 12px; height: 12px; border-radius: 50%; background: var(--blue); }
+    .dot-g { width: 12px; height: 12px; border-radius: 50%; background: var(--green); }
+    .nav-brand { display: flex; flex-direction: column; align-items: center; line-height: 1; }
+    .nav-brand-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 22px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--black);
+    }
+    .nav-brand-sub {
+      font-size: 8px; letter-spacing: 0.14em; color: var(--soft);
+      text-transform: uppercase; font-weight: 400; margin-top: 3px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 32px; }
+    .nav-link {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--black); text-decoration: none;
+    }
+    .lang-toggle { display: flex; border: 1.5px solid var(--border); border-radius: 4px; overflow: hidden; }
+    .lang-btn {
+      background: transparent; border: none; padding: 6px 14px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 12px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--mid); cursor: pointer; transition: all 0.15s;
+    }
+    .lang-btn + .lang-btn { border-left: 1.5px solid var(--border); }
+    .lang-btn.active { background: var(--black); color: var(--white); }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 48px 56px;
+    }
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--soft);
+      margin-bottom: 14px; display: flex; align-items: center; gap: 12px;
+    }
+    .hero-eyebrow::after { content: ''; width: 36px; height: 1px; background: var(--border); display: block; }
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: clamp(34px, 5vw, 58px);
+      text-transform: uppercase; line-height: 1.0;
+      letter-spacing: 0.02em; color: var(--black);
+    }
+    .hero-meta {
+      margin-top: 16px; font-size: 13px; color: var(--soft);
+      font-weight: 300; letter-spacing: 0.04em;
+    }
+    .hero-sub {
+      margin-top: 12px; font-size: 16px; color: var(--mid);
+      font-weight: 300; max-width: 620px; line-height: 1.65;
+    }
+
+    /* ─── MAIN ─── */
+    main {
+      flex: 1;
+      max-width: 860px; width: 100%;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+      display: flex; flex-direction: column; gap: 20px;
+    }
+
+    /* ─── TOC ─── */
+    .toc-card {
+      background: var(--dark);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+    }
+    .toc-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+      color: #666; margin-bottom: 16px;
+    }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+    .toc-list li { border-bottom: 1px solid #2a2a2a; }
+    .toc-list li:last-child { border-bottom: none; }
+    .toc-list a {
+      display: flex; align-items: center; gap: 14px;
+      padding: 11px 0; text-decoration: none;
+      font-size: 14px; color: #aaa; font-weight: 300;
+      transition: color 0.15s;
+    }
+    .toc-list a:hover { color: var(--white); }
+    .toc-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 12px; letter-spacing: 0.08em;
+      color: #444; min-width: 24px;
+    }
+
+    /* ─── SECTION TITLE ─── */
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--soft);
+      margin-bottom: 16px; display: flex; align-items: center; gap: 12px;
+    }
+    .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ─── CARD ─── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 22px 28px 18px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .card-header h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 17px;
+      text-transform: uppercase; letter-spacing: 0.06em; color: var(--black);
+    }
+    .card-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 13px; letter-spacing: 0.08em;
+      color: var(--soft); min-width: 28px;
+    }
+    .card-body { padding: 24px 28px; display: flex; flex-direction: column; gap: 20px; }
+
+    /* ─── PROSE ─── */
+    .prose { font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.7; }
+    .prose strong { color: var(--black); font-weight: 500; }
+
+    /* ─── SUB-SECTION ─── */
+    .sub-section { display: flex; flex-direction: column; gap: 10px; }
+    .sub-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--black);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sub-dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+
+    /* ─── DATA LIST ─── */
+    .data-list { list-style: none; }
+    .data-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+      font-size: 15px; color: var(--mid); font-weight: 300; line-height: 1.5;
+    }
+    .data-list li:last-child { border-bottom: none; padding-bottom: 0; }
+    .data-list li:first-child { padding-top: 0; }
+    .ldot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+
+    /* ─── BANNER ─── */
+    .banner {
+      border-radius: 6px; padding: 13px 16px;
+      font-size: 14px; line-height: 1.6; font-weight: 300;
+      display: flex; align-items: flex-start; gap: 10px;
+    }
+    .banner-icon { flex-shrink: 0; margin-top: 1px; }
+    .banner-red  { background: var(--red-pale); border-left: 3px solid var(--red); color: #a33; }
+    .banner-blue { background: #f0f5fd; border-left: 3px solid var(--blue); color: #1e3f6e; }
+    .banner-yellow { background: #fefae8; border-left: 3px solid var(--yellow); color: #6b5200; }
+    .banner strong { font-weight: 600; }
+
+    /* ─── DIVIDER ─── */
+    hr { border: none; border-top: 1px solid var(--border); }
+
+    /* ─── CONTACT ─── */
+    .contact-card {
+      background: var(--dark); border-radius: var(--radius);
+      padding: 36px 40px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .contact-card-left h2 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800; font-size: 22px;
+      text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); margin-bottom: 6px;
+    }
+    .contact-card-left p { font-size: 14px; color: #888; font-weight: 300; }
+    .contact-btn {
+      display: inline-block; background: var(--white); color: var(--black);
+      text-decoration: none; padding: 12px 28px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      border-radius: 4px; white-space: nowrap; transition: background 0.15s, color 0.15s;
+    }
+    .contact-btn:hover { background: var(--green); color: var(--white); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black); color: #555; text-align: center;
+      padding: 16px 48px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+    }
+    footer a { color: #888; text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ─── LANG ─── */
+    .block-lang { display: none; }
+    .block-lang.visible { display: block; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 700px) {
+      nav { padding: 0 20px; }
+      .nav-link { display: none; }
+      .hero { padding: 44px 20px 40px; }
+      main { padding: 32px 16px 56px; }
+      .contact-card { padding: 28px 24px; flex-direction: column; align-items: flex-start; }
+      .toc-card { padding: 22px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="https://augeas.io" class="nav-logo">
+    <div class="dots">
+      <span class="dot-y"></span>
+      <span class="dot-b"></span>
+      <span class="dot-g"></span>
+    </div>
+    <div class="nav-brand">
+      <span class="nav-brand-name">Augeas</span>
+      <span class="nav-brand-sub">Turns waste into value</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://augeas.io#solution" class="nav-link">Our Solution</a>
+    <a href="https://augeas.io#contact" class="nav-link">Contact</a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('fr')" id="btn-fr">FR</button>
+      <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ══════════════════════════ FRENCH ══════════════════════════ -->
+<div class="block-lang visible" data-lang="fr">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Données personnelles</div>
+    <h1>Règles de<br>confidentialité</h1>
+    <p class="hero-meta">Dernière mise à jour : 29 janvier 2026</p>
+    <p class="hero-sub">Votre confiance est importante pour nous. Cette politique explique comment nous collectons, utilisons, partageons et protégeons les données des utilisateurs de l'application Augeas.</p>
+  </div>
+
+  <main>
+
+    <!-- TABLE DES MATIÈRES -->
+    <div class="toc-card">
+      <div class="toc-label">Table des matières</div>
+      <ul class="toc-list">
+        <li><a href="#fr-1"><span class="toc-num">01</span>Données que nous collectons</a></li>
+        <li><a href="#fr-2"><span class="toc-num">02</span>Comment nous utilisons vos données</a></li>
+        <li><a href="#fr-3"><span class="toc-num">03</span>Partage et divulgation des données</a></li>
+        <li><a href="#fr-4"><span class="toc-num">04</span>Sécurité des données</a></li>
+        <li><a href="#fr-5"><span class="toc-num">05</span>Conservation et suppression des données</a></li>
+        <li><a href="#fr-6"><span class="toc-num">06</span>Permissions de l'appareil</a></li>
+        <li><a href="#fr-7"><span class="toc-num">07</span>Confidentialité des enfants</a></li>
+        <li><a href="#fr-8"><span class="toc-num">08</span>Modifications de cette politique</a></li>
+        <li><a href="#fr-9"><span class="toc-num">09</span>Nous contacter</a></li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <div id="fr-1">
+      <div class="section-title">Section 01</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">01</span>
+          <h2>Données que nous collectons</h2>
+        </div>
+        <div class="card-body">
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--yellow)"></span>A — Informations fournies directement</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Informations de compte :</strong> nom, prénom, nom d'utilisateur, adresse e-mail et, si fourni, numéro de téléphone.</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Authentification Google (Sign-In) :</strong> identifiant utilisateur unique (UID), adresse e-mail, nom complet et photo de profil.</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Préférences :</strong> votre préférence de langue pour personnaliser votre expérience.</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Photo de profil :</strong> l'image que vous choisissez de télécharger.</div></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--blue)"></span>B — Informations collectées automatiquement</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Données d'utilisation :</strong> historique de vos sessions de recyclage (poubelles utilisées, date/heure, types de déchets triés).</div></li>
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Données de localisation :</strong> avec votre permission, votre position géographique pour localiser les poubelles à proximité.</div></li>
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Identifiants de l'appareil :</strong> modèle et système d'exploitation, à des fins de diagnostic.</div></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--green)"></span>C — Services tiers et données log (Google Firebase)</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--green)"></span><div><strong>Firebase Crashlytics :</strong> en cas de crash, nous collectons des journaux d'erreurs pouvant inclure l'adresse IP anonymisée, le nom de l'appareil, la version OS, la configuration au moment du crash et l'heure/date de l'incident.</div></li>
+              <li><span class="ldot" style="background:var(--green)"></span><div><strong>Firebase App Check :</strong> analyse les caractéristiques de l'appareil via des fournisseurs d'attestation (Google Play Integrity sur Android, DeviceCheck sur iOS) pour vérifier que les requêtes proviennent de l'application officielle.</div></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div id="fr-2">
+      <div class="section-title">Section 02</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">02</span>
+          <h2>Comment nous utilisons vos données</h2>
+        </div>
+        <div class="card-body">
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Fournir et gérer le service :</strong> création et maintien de votre compte, authentification, fonctionnalités comme le scan de QR codes et la localisation des poubelles.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Personnaliser votre expérience :</strong> affichage de votre profil, informations, points de récompense et préférences de langue.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Communiquer avec vous :</strong> informations importantes sur le service, mises à jour, réponses à vos demandes.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Améliorer l'application :</strong> analyse des tendances d'utilisation, diagnostic des problèmes techniques, amélioration de la fonctionnalité.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Sécurité :</strong> protection de nos utilisateurs et de la plateforme contre les accès frauduleux.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div id="fr-3">
+      <div class="section-title">Section 03</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">03</span>
+          <h2>Partage et divulgation des données</h2>
+        </div>
+        <div class="card-body">
+          <div class="banner banner-blue">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#4a90d9"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span>
+            <span>Nous ne vendons ni ne louons vos informations personnelles à des tiers.</span>
+          </div>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Fournisseurs de services tiers :</strong> Google Firebase (authentification, hébergement Firestore/Cloud SQL, App Check). Ces fournisseurs n'ont accès à vos données que pour effectuer leurs tâches et sont tenus de ne pas les utiliser à d'autres fins.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Pour des raisons légales :</strong> si la loi l'exige ou pour protéger nos droits, notre propriété, ou la sécurité de nos utilisateurs.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div id="fr-4">
+      <div class="section-title">Section 04</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">04</span>
+          <h2>Sécurité des données</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">La sécurité de vos données est une priorité. Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos informations.</p>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--green)"></span>Toutes les données transférées entre votre appareil et nos serveurs sont <strong>chiffrées en transit via TLS (HTTPS)</strong>.</li>
+            <li><span class="ldot" style="background:var(--green)"></span>L'intégrité de nos échanges est renforcée par l'utilisation de <strong>jetons de sécurité (App Check)</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div id="fr-5">
+      <div class="section-title">Section 05</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">05</span>
+          <h2>Conservation et suppression des données</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">Nous conservons vos données personnelles aussi longtemps que votre compte est actif ou que cela est nécessaire pour vous fournir nos services.</p>
+          <div class="banner banner-red">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#d94a4a"><path d="M12 2L1 21h22L12 2zm0 3.8L20.2 19H3.8L12 5.8zM11 10h2v5h-2zm0 6h2v2h-2z"/></svg></span>
+            <span>La suppression de compte est <strong>irréversible et définitive</strong>. Elle entraîne la suppression immédiate de :</span>
+          </div>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--red)"></span>Informations personnelles (email, nom, photo, numéro de téléphone)</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Historique complet de recyclage</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Points et récompenses accumulés</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Identifiants d'authentification tiers (liens Google)</li>
+          </ul>
+          <p class="prose">Vous pouvez effectuer cette action directement depuis les paramètres de l'application via l'option <strong>« Supprimer mon compte »</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div id="fr-6">
+      <div class="section-title">Section 06</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">06</span>
+          <h2>Permissions de l'appareil</h2>
+        </div>
+        <div class="card-body">
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--yellow)"></span>Caméra</div>
+            <p class="prose">Strictement nécessaire pour scanner les QR codes sur les poubelles intelligentes. <strong>Aucune image ou vidéo n'est enregistrée</strong> sur votre téléphone ou envoyée à nos serveurs.</p>
+          </div>
+          <hr />
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--blue)"></span>Localisation</div>
+            <p class="prose">Permet d'afficher votre position sur la carte et de vous aider à trouver les poubelles les plus proches. <strong>Ces données ne sont pas utilisées pour tracer vos déplacements</strong> en dehors de l'usage actif de l'application.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div id="fr-7">
+      <div class="section-title">Section 07</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">07</span>
+          <h2>Confidentialité des enfants</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">Notre service ne s'adresse pas aux personnes de <strong>moins de 13 ans</strong>. Nous ne collectons pas sciemment d'informations personnelles identifiables auprès d'enfants de moins de 13 ans. Si nous découvrons que nous avons collecté de telles données sans consentement parental, nous prendrons des mesures pour les supprimer de nos serveurs.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div id="fr-8">
+      <div class="section-title">Section 08</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">08</span>
+          <h2>Modifications de cette politique</h2>
+        </div>
+        <div class="card-body">
+          <div class="banner banner-yellow">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f5c400"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span>
+            <span>Nous pouvons mettre à jour cette politique de temps à autre. Nous vous informerons de tout changement en publiant la nouvelle version sur cette page. Nous vous conseillons de la consulter périodiquement.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="fr-9">
+      <div class="contact-card">
+        <div class="contact-card-left">
+          <h2>Nous contacter</h2>
+          <p>Pour toute question relative à cette politique de confidentialité.</p>
+        </div>
+        <a href="mailto:info@augeas.io" class="contact-btn">info@augeas.io</a>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /fr -->
+
+
+<!-- ══════════════════════════ ENGLISH ══════════════════════════ -->
+<div class="block-lang" data-lang="en">
+
+  <div class="hero">
+    <div class="hero-eyebrow">Personal data</div>
+    <h1>Privacy<br>policy</h1>
+    <p class="hero-meta">Last updated: January 29, 2026</p>
+    <p class="hero-sub">Your trust is important to us. This policy explains how we collect, use, share, and protect user data within the Augeas application.</p>
+  </div>
+
+  <main>
+
+    <!-- TOC -->
+    <div class="toc-card">
+      <div class="toc-label">Table of contents</div>
+      <ul class="toc-list">
+        <li><a href="#en-1"><span class="toc-num">01</span>Data We Collect</a></li>
+        <li><a href="#en-2"><span class="toc-num">02</span>How We Use Your Data</a></li>
+        <li><a href="#en-3"><span class="toc-num">03</span>Data Sharing and Disclosure</a></li>
+        <li><a href="#en-4"><span class="toc-num">04</span>Data Security</a></li>
+        <li><a href="#en-5"><span class="toc-num">05</span>Data Retention and Deletion</a></li>
+        <li><a href="#en-6"><span class="toc-num">06</span>Device Permissions</a></li>
+        <li><a href="#en-7"><span class="toc-num">07</span>Children's Privacy</a></li>
+        <li><a href="#en-8"><span class="toc-num">08</span>Changes to This Policy</a></li>
+        <li><a href="#en-9"><span class="toc-num">09</span>Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- 1 -->
+    <div id="en-1">
+      <div class="section-title">Section 01</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">01</span>
+          <h2>Data We Collect</h2>
+        </div>
+        <div class="card-body">
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--yellow)"></span>A — Information You Provide Directly</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Account Information:</strong> first name, last name, username, email address, and phone number (if provided).</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Google Sign-In:</strong> unique user ID (UID), email address, full name, and profile picture.</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Preferences:</strong> your language preference to personalise your experience.</div></li>
+              <li><span class="ldot" style="background:var(--yellow)"></span><div><strong>Profile Picture:</strong> the image you choose to upload.</div></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--blue)"></span>B — Information Collected Automatically</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Usage Data:</strong> recycling session history (bins used, date/time, waste types sorted).</div></li>
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Location Data:</strong> with your permission, your geographic location to help find nearby smart bins.</div></li>
+              <li><span class="ldot" style="background:var(--blue)"></span><div><strong>Device Identifiers:</strong> device model and operating system for diagnostic purposes.</div></li>
+            </ul>
+          </div>
+
+          <hr />
+
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--green)"></span>C — Third-Party Services and Log Data (Google Firebase)</div>
+            <ul class="data-list">
+              <li><span class="ldot" style="background:var(--green)"></span><div><strong>Firebase Crashlytics:</strong> on crash, we collect error logs that may include anonymised IP address, device name, OS version, app configuration at crash time, and timestamp.</div></li>
+              <li><span class="ldot" style="background:var(--green)"></span><div><strong>Firebase App Check:</strong> analyses device characteristics via attestation providers (Google Play Integrity on Android, DeviceCheck on iOS) to verify requests come from the official app.</div></li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 -->
+    <div id="en-2">
+      <div class="section-title">Section 02</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">02</span>
+          <h2>How We Use Your Data</h2>
+        </div>
+        <div class="card-body">
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Provide and manage the service:</strong> account creation and maintenance, authentication, QR code scanning, and bin localisation.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Personalise your experience:</strong> display your profile, reward points, and language preferences.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Communicate with you:</strong> important service information, updates, and responses to your requests.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Improve the application:</strong> analyse usage trends, diagnose technical issues, and improve functionality.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Security:</strong> protect users and the platform against fraudulent access.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3 -->
+    <div id="en-3">
+      <div class="section-title">Section 03</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">03</span>
+          <h2>Data Sharing and Disclosure</h2>
+        </div>
+        <div class="card-body">
+          <div class="banner banner-blue">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#4a90d9"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span>
+            <span>We do not sell or rent your personal information to third parties.</span>
+          </div>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>Third-party service providers:</strong> Google Firebase (authentication, Firestore/Cloud SQL hosting, App Check). These providers only access your data to perform their tasks and are obligated not to use it for any other purpose.</div></li>
+            <li><span class="ldot" style="background:var(--black)"></span><div><strong>For legal reasons:</strong> if required by law, or to protect our rights, property, or the safety of our users.</div></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 -->
+    <div id="en-4">
+      <div class="section-title">Section 04</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">04</span>
+          <h2>Data Security</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">The security of your data is a priority. We implement technical and organisational security measures to protect your information.</p>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--green)"></span>All data transferred between your device and our servers is <strong>encrypted in transit using TLS (HTTPS)</strong>.</li>
+            <li><span class="ldot" style="background:var(--green)"></span>The integrity of our exchanges is reinforced by <strong>security tokens (App Check)</strong>.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 -->
+    <div id="en-5">
+      <div class="section-title">Section 05</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">05</span>
+          <h2>Data Retention and Deletion</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">We retain your personal data for as long as your account is active or as needed to provide our services.</p>
+          <div class="banner banner-red">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#d94a4a"><path d="M12 2L1 21h22L12 2zm0 3.8L20.2 19H3.8L12 5.8zM11 10h2v5h-2zm0 6h2v2h-2z"/></svg></span>
+            <span>Account deletion is <strong>permanent and irreversible</strong>. It immediately removes:</span>
+          </div>
+          <ul class="data-list">
+            <li><span class="ldot" style="background:var(--red)"></span>Personal information (email, name, photo, phone number)</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Complete recycling history</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Accumulated points and rewards</li>
+            <li><span class="ldot" style="background:var(--red)"></span>Third-party authentication links (Google)</li>
+          </ul>
+          <p class="prose">You can initiate this action directly from the app settings via the <strong>"Delete my account"</strong> option.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6 -->
+    <div id="en-6">
+      <div class="section-title">Section 06</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">06</span>
+          <h2>Device Permissions</h2>
+        </div>
+        <div class="card-body">
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--yellow)"></span>Camera</div>
+            <p class="prose">Strictly necessary to scan QR codes on smart bins. <strong>No images or videos are saved</strong> on your phone or sent to our servers.</p>
+          </div>
+          <hr />
+          <div class="sub-section">
+            <div class="sub-title"><span class="sub-dot" style="background:var(--blue)"></span>Location</div>
+            <p class="prose">Allows us to display your position on the map and help you find the nearest bins. <strong>This data is not used to track your movements</strong> outside of active app usage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7 -->
+    <div id="en-7">
+      <div class="section-title">Section 07</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">07</span>
+          <h2>Children's Privacy</h2>
+        </div>
+        <div class="card-body">
+          <p class="prose">Our service is not directed to individuals <strong>under the age of 13</strong>. We do not knowingly collect personally identifiable information from children under 13. If we discover we have collected such data without parental consent, we will take steps to remove it from our servers.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 -->
+    <div id="en-8">
+      <div class="section-title">Section 08</div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-num">08</span>
+          <h2>Changes to This Policy</h2>
+        </div>
+        <div class="card-body">
+          <div class="banner banner-yellow">
+            <span class="banner-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="#f5c400"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg></span>
+            <span>We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new policy on this page. We advise you to review it periodically.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div id="en-9">
+      <div class="contact-card">
+        <div class="contact-card-left">
+          <h2>Contact us</h2>
+          <p>For any questions regarding this Privacy Policy.</p>
+        </div>
+        <a href="mailto:info@augeas.io" class="contact-btn">info@augeas.io</a>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /en -->
+
+
+<!-- FOOTER -->
+<footer>
+  <span class="block-lang visible" data-lang="fr" style="display:inline">© 2025 Augeas — Tous droits réservés &nbsp;·&nbsp; <a href="https://augeas.io">augeas.io</a></span>
+  <span class="block-lang" data-lang="en">© 2025 Augeas — All rights reserved &nbsp;·&nbsp; <a href="https://augeas.io">augeas.io</a></span>
+</footer>
+
+<script>
+  function setLang(lang) {
+    document.querySelectorAll('.block-lang').forEach(el => {
+      el.classList.toggle('visible', el.dataset.lang === lang);
+    });
+    document.getElementById('btn-fr').classList.toggle('active', lang === 'fr');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  }
+</script>
+</body>
+</html>
