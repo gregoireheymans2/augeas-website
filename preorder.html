@@ -95,6 +95,14 @@
     .s-dot.active { background: #fff; }
 
 
+    /* DEMO VIDEO */
+    .demo-video-block { margin-top: 32px; padding: 32px; background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); }
+    .demo-video-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 8px; }
+    .demo-video-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black); margin-bottom: 10px; }
+    .demo-video-desc { font-size: 14px; color: var(--mid); font-weight: 300; line-height: 1.6; margin-bottom: 20px; max-width: 620px; }
+    .demo-video-wrap { position: relative; width: 100%; max-width: 360px; aspect-ratio: 9/16; border-radius: 8px; overflow: hidden; }
+    .demo-video-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
     .container-card-body { padding: 24px 24px 20px; flex: 1; display: flex; flex-direction: column; }
     .container-label { font-family: 'Barlow Condensed', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
     .container-card-body h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--black); margin-bottom: 8px; }
@@ -266,7 +274,7 @@
   </div>
 
   <div id="containers">
-    <div class="section-title">The containers</div>
+    <div class="section-title">The container</div>
     <div class="containers-grid">
 
       <div class="container-card">
@@ -307,6 +315,22 @@
       
 
     </div>
+
+    <div class="demo-video-block">
+      <div class="demo-video-label">Live demo — April 2026</div>
+      <h3 class="demo-video-title">See it in action</h3>
+      <p class="demo-video-desc">This is our product as of April 2026. The container is fully operational on the <strong>UCLouvain</strong> university campus in Belgium, with real users collecting cans every day. We're actively developing and improving the product, and this is just the beginning.</p>
+      <div class="demo-video-wrap">
+        <iframe
+          src="https://www.youtube.com/embed/15y28O8ws0Q"
+          title="Augeas container — live demo at UCLouvain, April 2026"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
   </div>
 
   <div>
